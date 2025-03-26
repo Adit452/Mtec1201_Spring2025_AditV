@@ -4,9 +4,9 @@
 //the code showcases some trees on a sunny day with a couple of clouds
 //press either "Q" or "q" to move the sun from left to right
 //move your mouse down to increase the size of the sun
-
+//Press S to change states
 //if you hold the mouse button down it makes a smooth transition from night to sunset color background
-
+// Press R to restart the code
 //DECLARING VARIABLES FOR THE COLORS 
 let r = 0;
 let g =0;
