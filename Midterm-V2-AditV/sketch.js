@@ -154,7 +154,7 @@ if (movingRight) {
 // Move moon up gradually at night
 if (r < 50 && g < 50 && b < 80) { 
   if (moonY < 100) { 
-    moonY += moonSpeed; // Move moon down into view
+    moonY += moonSpeed; //
   }
 } 
 
@@ -164,7 +164,7 @@ else {
   }
 }
 
-// Draw the moon only when it's night or transitioning
+// Draw moon when night
 if (moonY < height) {
   noStroke();
   fill(255, 255, 255, 50); // Glow effect
