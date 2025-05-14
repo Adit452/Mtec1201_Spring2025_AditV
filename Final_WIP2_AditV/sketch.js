@@ -207,7 +207,7 @@ function drawMoon(x, y) {
   fill(255);
   ellipse(x, y, 130, 130);
 
-  // Shadow to create crescent (adjust offset to match size)
+  // shadow
   fill(r, g, b); 
   ellipse(x - 35, y, 130, 130); 
 }
@@ -225,15 +225,15 @@ function setDaytime() {
   r = 135;
   g = 206;
   b = 235;
- 
+
   sunIsMoving = false;
   sunGoingUp = true;
-  if (bird.isPlaying()) bird.stop();
-  if (!insect.isPlaying()) {
-    insect.setVolume(0.5);
-    insect.loop();
-  }
 
+  if (insect.isPlaying()) insect.stop(); // Stop night sound
+  if (!bird.isPlaying()) {
+    bird.setVolume(0.5);
+    bird.loop(); // Play bird sound
+  }
 
 }
 
@@ -247,17 +247,24 @@ function resetSketch() {
   // Reset moon
   moonY = 150;
 
-  // Reset sky to night by default
+  // resetting sky
   r = 10;
   g = 10;
   b = 40;
 
-  // Generate new random tree colors
+  // random tree color
   treeColor1 = color(random(40, 200), random(80, 200), random(40, 80));
   treeColor2 = color(random(40, 200), random(80, 200), random(40, 80));
   treeColor3 = color(random(40, 200), random(80, 200), random(40, 80));
 
+
+
+  if (bird.isPlaying()) bird.stop();
+  if (!insect.isPlaying()) {
+    insect.setVolume(0.5);
+    insect.loop();
  
+}
 }
 
 //instructions code
@@ -295,10 +302,10 @@ function keyPressed() {
     sunIsMoving = false;
     sunGoingUp = true;
 
-    if (bird.isPlaying()) bird.stop();     // Stop birds during the day
-    if (!insect.isPlaying()) {
-      insect.setVolume(0.5);
-      insect.loop();                       // Play insects during the day
+    if (insect.isPlaying()) insect.stop();     // Stop insect
+    if (!bird.isPlaying()) {
+      bird.setVolume(0.5);
+      bird.loop();                       // Play bird at day
     }
   }
 
@@ -307,11 +314,11 @@ function keyPressed() {
     r = 10;
     g = 10;
     b = 40;
-
-    if (insect.isPlaying()) insect.stop(); // Stop insects at night
-    if (!bird.isPlaying()) {
-      bird.setVolume(0.5);
-      bird.loop();                         // Play birds at night
+  
+    if (bird.isPlaying()) bird.stop(); // Stop day sound
+    if (!insect.isPlaying()) {
+      insect.setVolume(0.5);
+      insect.loop(); // Play insect sound
     }
   }
 
@@ -325,9 +332,9 @@ function keyPressed() {
       insect.stop();
     } else {
       if (r === 135 && g === 206 && b === 235) {
-        insect.loop();
-      } else {
         bird.loop();
+      } else {
+        insect.loop();
       }
     }
   }
