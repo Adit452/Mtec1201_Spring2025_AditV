@@ -237,7 +237,7 @@ function drawMoon(x, y) {
   fill(255);
   ellipse(x, y, 130, 130);
 
-  // Shadow to create crescent (adjust offset to match size)
+  // Shadow to create crescent 
   fill(r, g, b); 
   ellipse(x - 35, y, 130, 130); 
 }
