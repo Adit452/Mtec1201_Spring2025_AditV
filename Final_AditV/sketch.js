@@ -8,8 +8,8 @@
 //creating variables for tree colors
 
 let  treeColor1,treeColor2, treeColor3 
-
-
+//snow shouldnt be on mountain at the start
+let showSnow = false;
 // all the variables needed for the sun
 let sunx = 200;
 let suny = 200;
@@ -116,7 +116,7 @@ if (showFlowers) {
     }
   }
  drawTree(1450, 250, treeColor3); 
-drawTree(450, 60, treeColor2);   //left side mid upper
+drawTree(60, 60, treeColor2);   //left side mid upper
  drawTree(150, 180, treeColor1);     // Left side upper
 drawTree(1050, 150, treeColor2);    // Right side upper
 drawTree(300, 450, treeColor3);     // Left side lower
@@ -190,22 +190,40 @@ function drawTree(x, y, treeColor) {
 
 
  // function for the mountains
- function drawMountains() {
+function drawMountains() {
   noStroke();
 
-  //mountain in the back
+  // back mountain
   fill(180);
-  triangle(100,700,800,100,1500,700);
+  triangle(100, 700, 800, 100, 1500, 700);
 
-  // the big mountain
+  if (showSnow) {
+    fill(255);
+    
+    triangle(700, 190, 800, 100, 900, 190); 
+  }
+
+  // big mountain
   fill(120);
-  triangle(300, 750,  1000, 200, 1600, 750);
+  triangle(300, 750, 1000, 200, 1600, 750);
 
-  // small mountain on the left
+  if (showSnow) {
+    fill(255);
+    
+    triangle(880, 290, 1000, 200, 1120, 290); 
+  }
+
+  //small mountain
   fill(90);
-  triangle(-100, 750,  400, 300, 900, 750);
+  triangle(-100, 750, 400, 300, 900, 750);
 
+  if (showSnow) {
+    fill(255);
+    
+    triangle(320, 370, 400, 300, 480, 370); 
+  }
 }
+
 
 
 function drawMoon(x, y) {
@@ -272,14 +290,14 @@ function resetSketch() {
  
 }
 
-//instructions code
+//instructions border
 function displayInstructions() {
   const x = 20;
-  const y = height - 170; // Moved up slightly to give space
+  const y = height - 170; 
   const w = 260;
-  const h = 130; // Increased height to fit all lines
+  const h = 130; 
 
-  // Draw border using lines (rectangle-style)
+
   stroke(0);
   strokeWeight(2);
   line(x, y, x + w, y);           // top
@@ -292,13 +310,13 @@ function displayInstructions() {
   fill(0);
   textSize(16);
   textAlign(LEFT, TOP);
-  text(`Controls:
+ text(`Controls:
 D - Daytime
 N - Nighttime
 R - Reset scene
-M - Mute/unmute sounds`, x + 10, y + 10);
-}
-
+M - Mute/unmute sounds
+S - Toggle snow`, x + 10, y+5)
+ }
 
 //function for key presses
 function keyPressed() {
@@ -330,7 +348,12 @@ function keyPressed() {
     if (!bird.isPlaying()) {
       bird.setVolume(0.5);
       bird.loop();                         // Play birds at night
+    
     }
+
+  }
+  if (key === 's' || key === 'S') {
+    showSnow = !showSnow;
   }
 
 
